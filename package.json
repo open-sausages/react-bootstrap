@@ -1,10 +1,10 @@
 {
-  "name": "react-bootstrap",
-  "version": "0.30.3",
-  "description": "Bootstrap 3 components built with React",
+  "name": "react-bootstrap-ss",
+  "version": "0.30.4",
+  "description": "Bootstrap 4 components built with React",
   "repository": {
     "type": "git",
-    "url": "react-bootstrap/react-bootstrap"
+    "url": "open-sausages/react-bootstrap"
   },
   "homepage": "https://react-bootstrap.github.io/",
   "scripts": {
@@ -35,7 +35,7 @@
     "react-component",
     "bootstrap"
   ],
-  "author": "Stephen J. Collings <stevoland@gmail.com>",
+  "author": "Christopher Joe <cjoe@silverstripe.com>",
   "license": "MIT",
   "peerDependencies": {
     "react": ">=0.14.0",
@@ -120,6 +120,7 @@
     "babel-runtime": "^6.11.6",
     "classnames": "^2.2.5",
     "dom-helpers": "^2.4.0",
+    "glob": "^7.0.6",
     "invariant": "^2.2.1",
     "keycode": "^2.1.2",
     "react-overlays": "^0.6.6",
