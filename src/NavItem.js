@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
+import { prefix, splitBsProps } from './utils/bootstrapUtils';
 
 import SafeAnchor from './SafeAnchor';
 import createChainedFunction from './utils/createChainedFunction';
@@ -37,33 +38,34 @@ class NavItem extends React.Component {
   }
 
   render() {
-    const { active, disabled, onClick, className, style, ...props } =
-      this.props;
+    const { active, onClick, className, style, ...props } = this.props;
+    const [bsProps, elementProps] = splitBsProps(props);
 
-    delete props.onSelect;
-    delete props.eventKey;
+    delete elementProps.onSelect;
+    delete elementProps.eventKey;
 
     // These are injected down by `<Nav>` for building `<SubNav>`s.
-    delete props.activeKey;
-    delete props.activeHref;
+    delete elementProps.activeKey;
+    delete elementProps.activeHref;
 
-    if (!props.role) {
-      if (props.href === '#') {
-        props.role = 'button';
+    if (!elementProps.role) {
+      if (elementProps.href === '#') {
+        elementProps.role = 'button';
       }
-    } else if (props.role === 'tab') {
-      props['aria-selected'] = active;
+    } else if (elementProps.role === 'tab') {
+      elementProps['aria-selected'] = active;
     }
 
     return (
       <li
         role="presentation"
-        className={classNames(className, { active, disabled })}
+        className={classNames(className, prefix(bsProps, 'item'))}
         style={style}
       >
         <SafeAnchor
-          {...props}
-          disabled={disabled}
+          {...elementProps}
+          active={active}
+          className={prefix(bsProps, 'link')}
           onClick={createChainedFunction(onClick, this.handleClick)}
         />
       </li>

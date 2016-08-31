@@ -328,6 +328,7 @@ class Nav extends React.Component {
             ...this.getTabProps(
               child, tabContainer, role, active, childOnSelect
             ),
+            ...bsProps,
             active,
             activeKey,
             activeHref,
