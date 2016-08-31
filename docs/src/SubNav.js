@@ -1,5 +1,6 @@
 import React, { cloneElement } from 'react';
 import classNames from 'classnames';
+import { splitBsProps } from '../../src/utils/bootstrapUtils';
 
 import Nav from '../../src/Nav';
 import SafeAnchor from '../../src/SafeAnchor';
@@ -73,9 +74,10 @@ class SubNav extends React.Component {
       children,
       ...props,
     } = this.props;
+    const [, elementProps] = splitBsProps(props);
 
-    delete props.active; // Accessed via this.isActive().
-    delete props.eventKey; // Accessed via this.isActive().
+    delete elementProps.active; // Accessed via this.isActive().
+    delete elementProps.eventKey; // Accessed via this.isActive().
 
     const classes = {
       active: this.isActive(this, activeKey, activeHref),
@@ -84,7 +86,7 @@ class SubNav extends React.Component {
 
     return (
       <li className={classNames(className, classes)} style={style}>
-        <SafeAnchor {...props}>
+        <SafeAnchor {...elementProps}>
           {text}
         </SafeAnchor>
 

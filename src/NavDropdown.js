@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 
+import { prefix, splitBsProps } from './utils/bootstrapUtils';
 import Dropdown from './Dropdown';
 import splitComponentProps from './utils/splitComponentProps';
 import ValidComponentChildren from './utils/ValidComponentChildren';
@@ -49,13 +50,14 @@ class NavDropdown extends React.Component {
       children,
       ...props,
     } = this.props;
+    const [bsProps, elementProps] = splitBsProps(props);
 
     const active = this.isActive(this, activeKey, activeHref);
-    delete props.active; // Accessed via this.isActive().
-    delete props.eventKey; // Accessed via this.isActive().
+    delete elementProps.active; // Accessed via this.isActive().
+    delete elementProps.eventKey; // Accessed via this.isActive().
 
     const [dropdownProps, toggleProps] =
-      splitComponentProps(props, Dropdown.ControlledComponent);
+      splitComponentProps(elementProps, Dropdown.ControlledComponent);
 
     // Unlike for the other dropdowns, styling needs to go to the `<Dropdown>`
     // rather than the `<Dropdown.Toggle>`.
@@ -64,10 +66,13 @@ class NavDropdown extends React.Component {
       <Dropdown
         {...dropdownProps}
         componentClass="li"
-        className={classNames(className, { active })}
+        className={classNames(className, prefix(bsProps, 'item'))}
         style={style}
       >
-        <Dropdown.Toggle {...toggleProps} useAnchor>
+        <Dropdown.Toggle
+          {...toggleProps}
+          useAnchor
+          className={classNames(prefix(bsProps, 'link'), { active })}>
           {title}
         </Dropdown.Toggle>
 

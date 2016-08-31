@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import React from 'react';
-import { splitBsProps } from './utils/bootstrapUtils';
 import elementType from 'react-prop-types/lib/elementType';
 
 const propTypes = {
@@ -59,23 +58,22 @@ class SafeAnchor extends React.Component {
 
   render() {
     const { componentClass: Component, active, disabled, className, ...props } = this.props;
-    const [, elementProps] = splitBsProps(props);
 
-    if (isTrivialHref(elementProps.href)) {
-      elementProps.role = elementProps.role || 'button';
+    if (isTrivialHref(props.href)) {
+      props.role = props.role || 'button';
       // we want to make sure there is a href attribute on the node
       // otherwise, the cursor incorrectly styled (except with role='button')
-      elementProps.href = elementProps.href || '';
+      props.href = props.href || '';
     }
 
     if (disabled) {
-      elementProps.tabIndex = -1;
-      elementProps.style = { pointerEvents: 'none', ...elementProps.style };
+      props.tabIndex = -1;
+      props.style = { pointerEvents: 'none', ...props.style };
     }
 
     return (
       <Component
-        {...elementProps}
+        {...props}
         className={classNames(className, { active, disabled })}
         onClick={this.handleClick}
       />
