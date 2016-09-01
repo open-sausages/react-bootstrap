@@ -98,6 +98,9 @@ class Tabs extends React.Component {
       activeKey = getDefaultActiveKey(children),
       ...props
     } = this.props;
+    const tabs = ValidComponentChildren
+      .map(children, this.renderTab)
+      .filter((tab) => tab !== null);
 
     return (
       <TabContainer
@@ -108,12 +111,12 @@ class Tabs extends React.Component {
         style={style}
       >
         <div>
-          { children.length &&
+          { tabs.length &&
           <Nav
             {...props}
             role="tablist"
           >
-            {ValidComponentChildren.map(children, this.renderTab)}
+            {tabs}
           </Nav> }
 
           <TabContent
