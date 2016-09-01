@@ -108,12 +108,13 @@ class Tabs extends React.Component {
         style={style}
       >
         <div>
+          { children.length &&
           <Nav
             {...props}
             role="tablist"
           >
             {ValidComponentChildren.map(children, this.renderTab)}
-          </Nav>
+          </Nav> }
 
           <TabContent
             bsClass={bsClass}

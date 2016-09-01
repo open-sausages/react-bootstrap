@@ -1,9 +1,11 @@
+import classNames from 'classnames';
 import React from 'react';
 import elementType from 'react-prop-types/lib/elementType';
 
 const propTypes = {
   href: React.PropTypes.string,
   onClick: React.PropTypes.func,
+  active: React.PropTypes.bool,
   disabled: React.PropTypes.bool,
   role: React.PropTypes.string,
   tabIndex: React.PropTypes.oneOfType([
@@ -55,7 +57,7 @@ class SafeAnchor extends React.Component {
   }
 
   render() {
-    const { componentClass: Component, disabled, ...props } = this.props;
+    const { componentClass: Component, active, disabled, className, ...props } = this.props;
 
     if (isTrivialHref(props.href)) {
       props.role = props.role || 'button';
@@ -72,6 +74,7 @@ class SafeAnchor extends React.Component {
     return (
       <Component
         {...props}
+        className={classNames(className, { active, disabled })}
         onClick={this.handleClick}
       />
     );
