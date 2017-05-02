@@ -263,7 +263,7 @@ class OverlayTrigger extends React.Component {
     const childProps = child.props;
 
     const triggerProps = {
-      'aria-describedby': overlay.props.id
+      'aria-controls': overlay.props.id
     };
 
     // FIXME: The logic here for passing through handlers on this component is
