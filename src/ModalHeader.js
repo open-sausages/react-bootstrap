@@ -46,7 +46,7 @@ class ModalHeader extends React.Component {
       onHide,
       className,
       children,
-      ...props,
+      ...props
     } = this.props;
 
     const modal = this.context.$bs_modal;
@@ -65,7 +65,7 @@ class ModalHeader extends React.Component {
             type="button"
             className="close"
             aria-label={label}
-            onClick={createChainedFunction(modal.onHide, onHide)}
+            onClick={createChainedFunction(modal && modal.onHide, onHide)}
           >
             <span aria-hidden="true">
               &times;

@@ -62,10 +62,6 @@ class Panel extends React.Component {
     }
   }
 
-  shouldRenderFill(child) {
-    return React.isValidElement(child) && child.props.fill != null;
-  }
-
   renderHeader(collapsible, header, id, role, expanded, bsProps) {
     const titleClassName = prefix(bsProps, 'title');
 
@@ -102,6 +98,7 @@ class Panel extends React.Component {
         aria-controls={id}
         aria-expanded={expanded}
         aria-selected={expanded}
+        className={expanded ? null : 'collapsed' }
       >
         {header}
       </a>
@@ -182,7 +179,7 @@ class Panel extends React.Component {
       onExit,
       onExiting,
       onExited,
-      ...props,
+      ...props
     } = this.props;
 
     const [bsProps, elementProps] = splitBsPropsAndOmit(props, [

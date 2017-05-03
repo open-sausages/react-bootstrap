@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactTestUtils from 'react/lib/ReactTestUtils';
+import ReactTestUtils from 'react-addons-test-utils';
 import ReactDOM from 'react-dom';
 
 import OverlayTrigger from '../src/OverlayTrigger';
@@ -48,6 +48,29 @@ describe('<OverlayTrigger>', () => {
     ReactTestUtils.Simulate.click(overlayTrigger);
 
     instance.state.show.should.be.true;
+  });
+
+  it('Should not set aria-describedby if the state is not show', () => {
+    const instance = ReactTestUtils.renderIntoDocument(
+      <OverlayTrigger trigger="click" overlay={<Div>test</Div>}>
+        <button>button</button>
+      </OverlayTrigger>
+    );
+    const overlayTrigger = ReactDOM.findDOMNode(instance);
+
+    assert.equal(overlayTrigger.getAttribute('aria-describedby'), null);
+  });
+
+  it('Should set aria-describedby if the state is show', () => {
+    const instance = ReactTestUtils.renderIntoDocument(
+      <OverlayTrigger trigger="click" overlay={<Div id="overlayid">test</Div>}>
+        <button>button</button>
+      </OverlayTrigger>
+    );
+    const overlayTrigger = ReactDOM.findDOMNode(instance);
+    ReactTestUtils.Simulate.click(overlayTrigger);
+
+    overlayTrigger.getAttribute('aria-describedby').should.be;
   });
 
   describe('trigger handlers', () => {

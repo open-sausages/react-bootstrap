@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactTestUtils from 'react/lib/ReactTestUtils';
+import ReactTestUtils from 'react-addons-test-utils';
 
 import Pagination from '../src/Pagination';
 
@@ -102,6 +102,40 @@ describe('<Pagination>', () => {
     assert.equal(pageButtons[8].textContent, '20');
   });
 
+  it('should not render ellipsis with boundaryLinks near start', () => {
+    const instance = ReactTestUtils.renderIntoDocument(
+      <Pagination
+        first
+        last
+        prev
+        next
+        boundaryLinks
+        maxButtons={5}
+        activePage={4}
+        items={20}
+      />
+    );
+    const pageButtons = ReactTestUtils.scryRenderedDOMComponentsWithTag(instance, 'li');
+    assert.equal(pageButtons[3].textContent, '2');
+  });
+
+  it('should not render ellipsis with boundaryLinks near end', () => {
+    const instance = ReactTestUtils.renderIntoDocument(
+      <Pagination
+        first
+        last
+        prev
+        next
+        boundaryLinks
+        maxButtons={5}
+        activePage={17}
+        items={20}
+      />
+    );
+    const pageButtons = ReactTestUtils.scryRenderedDOMComponentsWithTag(instance, 'li');
+    assert.equal(pageButtons[pageButtons.length - 4].textContent, '19');
+  });
+
   it('should show the ellipsis, first, last, prev and next button with custom labels', () => {
     const instance = ReactTestUtils.renderIntoDocument(
       <Pagination
@@ -181,8 +215,8 @@ describe('<Pagination>', () => {
     assert.equal(pageButtons[0].children[0].tagName, 'A');
     assert.equal(pageButtons[1].children[0].tagName, 'A');
 
-    assert.equal(pageButtons[0].children[0].getAttribute('href'), '');
-    assert.equal(pageButtons[1].children[0].getAttribute('href'), '');
+    assert.equal(pageButtons[0].children[0].getAttribute('href'), '#');
+    assert.equal(pageButtons[1].children[0].getAttribute('href'), '#');
   });
 
   it('should wrap each button in a buttonComponentClass when it is present', () => {
@@ -275,5 +309,31 @@ describe('<Pagination>', () => {
     const pageButtons = ReactTestUtils.scryRenderedDOMComponentsWithTag(instance, 'a');
 
     assert.equal(pageButtons[1].getAttribute('href'), '?page=2');
+  });
+
+  it('should render three items from 1 to 3 when activePage=1', () => {
+    const instance = ReactTestUtils.renderIntoDocument(
+      <Pagination items={4} maxButtons={3} activePage={1} />
+    );
+    const pageButtons = ReactTestUtils.scryRenderedDOMComponentsWithTag(instance, 'li');
+
+    assert.equal(pageButtons[0].textContent, '1');
+    assert.equal(pageButtons[1].textContent, '2');
+    assert.equal(pageButtons[2].textContent, '3');
+  });
+
+  it('should render three items from 2 to 4 when activePage=3', () => {
+    const instance = ReactTestUtils.renderIntoDocument(
+      <Pagination
+        onSelect={()=>{}}
+        items={4}
+        maxButtons={3}
+        activePage={3} />
+    );
+    const pageButtons = ReactTestUtils.scryRenderedDOMComponentsWithTag(instance, 'li');
+
+    assert.equal(pageButtons[0].textContent, '2');
+    assert.equal(pageButtons[1].textContent, '3');
+    assert.equal(pageButtons[2].textContent, '4');
   });
 });

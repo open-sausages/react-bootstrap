@@ -11,7 +11,9 @@ const propTypes = {
   /**
    * Only valid if `inline` is not set.
    */
-  validationState: React.PropTypes.oneOf(['success', 'warning', 'error']),
+  validationState: React.PropTypes.oneOf([
+    'success', 'warning', 'error', null,
+  ]),
   /**
    * Attaches a ref to the `<input>` element. Only functions can be used here.
    *
@@ -37,7 +39,7 @@ class Radio extends React.Component {
       className,
       style,
       children,
-      ...props,
+      ...props
     } = this.props;
 
     const [bsProps, elementProps] = splitBsProps(props);

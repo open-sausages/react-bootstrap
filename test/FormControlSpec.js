@@ -61,4 +61,28 @@ describe('<FormControl>', () => {
       .render()
       .single('input#bar.form-control');
   });
+
+  it('should support inputRef', () => {
+    class Container extends React.Component {
+      render() {
+        return (
+          <FormGroup controlId="foo">
+            <FormControl type="text" inputRef={ref => { this.input = ref; }} />
+          </FormGroup>
+        );
+      }
+    }
+
+    const instance = $(<Container />).render().unwrap();
+    expect(instance.input.tagName).to.equal('INPUT');
+  });
+
+  it('should properly display size of FormControl', () => {
+    $(
+      <FormControl type="text" bsSize="lg" />
+    )
+      .render()
+      .single('input.form-control.input-lg');
+  });
+
 });

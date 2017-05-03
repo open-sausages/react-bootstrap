@@ -38,12 +38,10 @@ this will minimize trivial merge conflicts.
 If you are interested in becoming a react-bootstrap maintainer, start by
 reviewing issues and pull requests. Answer questions for those in need of
 troubleshooting. Join us in the
-[gitter/react-bootstrap](https://gitter.im/react-bootstrap/react-bootstrap) chat
-room. Once we see you helping, either we will reach out and ask you if you want
-to join or you can ask one of the [organization
-owners](https://github.com/orgs/react-bootstrap/teams/owners) to add you. We
-will try our best to be proactive in reaching out to those that are already
-helping out.
+[reactiflux#react-bootstrap](https://discord.gg/0ZcbPKXt5bXLs9XK) chat room.
+Once we see you helping, either we will reach out and ask you if you want to
+join or you can ask one of the current maintainers to add you. We will try our
+best to be proactive in reaching out to those that are already helping out.
 
 GitHub by default does not publicly state that you are a member of the
 organization. Please feel free to change that setting for yourself so others

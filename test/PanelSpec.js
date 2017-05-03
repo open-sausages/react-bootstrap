@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactTestUtils from 'react/lib/ReactTestUtils';
+import ReactTestUtils from 'react-addons-test-utils';
 import ReactDOM from 'react-dom';
 
 import Panel from '../src/Panel';
@@ -144,7 +144,10 @@ describe('<Panel>', () => {
       </Panel>
     );
     const collapse = ReactDOM.findDOMNode(instance).querySelector('.panel-collapse');
+    const anchor = ReactDOM.findDOMNode(instance).querySelector('.panel-title a');
+
     assert.notOk(collapse.className.match(/\bin\b/));
+    assert.ok(anchor.className.match(/\bcollapsed\b/), 'The anchor should have collapsed in its class name');
   });
 
   it('Should call onSelect handler', (done) => {

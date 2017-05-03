@@ -1,3 +1,89 @@
+## [v0.30.8]
+> 2017-03-07
+
+- **Feature:** Support `bsSize` on `<FormControl>` ([#2382], [#2394])
+- **Feature:** Pass event and event source to `onToggle` callback for `<Dropdown>` ([#2422])
+- **Feature:** Add `restoreFocus` to `<Modal>` ([#2482])
+- **Feature:** Add `mountOnEnter` to transition and tab components ([#2504])
+- **Bugfix:** Don't set `aria-describedby` in `<OverlayTrigger>` when not showing the overlay ([#2359])
+- **Bugfix:** Fix `boundaryLinks` in `<Pagination>` ([#2443])
+- **Bugfix:** Support `closeButton` in `<Modal.Header>` in static modals ([#2453])
+- **Bugfix:** Fix `<Carousel>` with `slide` disabled ([#2466])
+
+[v0.30.8]: https://github.com/react-bootstrap/react-bootstrap/compare/v0.30.7...v0.30.8
+[#2359]: https://github.com/react-bootstrap/react-bootstrap/pull/2359
+[#2382]: https://github.com/react-bootstrap/react-bootstrap/pull/2382
+[#2394]: https://github.com/react-bootstrap/react-bootstrap/pull/2394
+[#2422]: https://github.com/react-bootstrap/react-bootstrap/pull/2422
+[#2443]: https://github.com/react-bootstrap/react-bootstrap/pull/2443
+[#2453]: https://github.com/react-bootstrap/react-bootstrap/pull/2453
+[#2466]: https://github.com/react-bootstrap/react-bootstrap/pull/2466
+[#2482]: https://github.com/react-bootstrap/react-bootstrap/pull/2482
+[#2504]: https://github.com/react-bootstrap/react-bootstrap/pull/2504
+
+
+## [v0.30.7]
+> 2016-11-22
+
+- **Feature:** Add `componentClass` to `<Modal.Body>`, `<Modal.Footer>`, and `<Modal.Title>` ([#2313])
+- **Feature:** Add `inputRef` to `<FormControl>` ([#2337])
+- **Bugfix:** Pass `onMouseEnter` and `onMouseLeave` to `<Dropdown>` rather than `<Dropdown.Toggle>` from `<DropdownButton>` and related components ([#2335])
+- **Refactor:** Remove unused `shouldRenderFill` method on `<Panel>` ([#2316])
+- **Docs:** Explicitly add `placement` to `<Overlay>` `propTypes` for generated documentation ([#2318])
+- **Docs:** Explicitly document use of `null` (and `undefined`) `validationState` on `<FormGroup>` ([#2336])
+
+[v0.30.7]: https://github.com/react-bootstrap/react-bootstrap/compare/v0.30.6...v0.30.7
+[#2313]: https://github.com/react-bootstrap/react-bootstrap/pull/2313
+[#2316]: https://github.com/react-bootstrap/react-bootstrap/pull/2316
+[#2318]: https://github.com/react-bootstrap/react-bootstrap/pull/2318
+[#2335]: https://github.com/react-bootstrap/react-bootstrap/pull/2335
+[#2336]: https://github.com/react-bootstrap/react-bootstrap/pull/2336
+[#2337]: https://github.com/react-bootstrap/react-bootstrap/pull/2337
+
+
+## [v0.30.6]
+> 2016-10-28
+
+- **Feature:** Add `rootCloseEvent` to `<Dropdown>` to configure root close trigger event ([#2195])
+- **Feature:** Add screen reader labels configurable with `prevLabel` and `nextLabel` to `<Carousel>` controls ([#2275])
+- **Feature:** Add `collapseOnSelect` to `<Navbar>` to enable automatically collapsing the navbar when the user selects an item ([#2280], [#2308])
+- **Bugfix:** Change placeholder `href` in `<SafeAnchor>` to `#` for better IE compatibility ([#2080])
+- **Bugfix:** Fix off-by-one error in displaying `<Pagination>` pages ([#2271])
+- **Bugfix:** Properly set `.collapsed` on `<Panel>` title anchor ([#2276])
+
+[v0.30.6]: https://github.com/react-bootstrap/react-bootstrap/compare/v0.30.5...v0.30.6
+[#2080]: https://github.com/react-bootstrap/react-bootstrap/pull/2080
+[#2195]: https://github.com/react-bootstrap/react-bootstrap/pull/2195
+[#2271]: https://github.com/react-bootstrap/react-bootstrap/pull/2271
+[#2275]: https://github.com/react-bootstrap/react-bootstrap/pull/2275
+[#2276]: https://github.com/react-bootstrap/react-bootstrap/pull/2276
+[#2280]: https://github.com/react-bootstrap/react-bootstrap/pull/2280
+[#2308]: https://github.com/react-bootstrap/react-bootstrap/pull/2308
+
+
+## [v0.30.5]
+> 2016-10-03
+
+- **Bugfix:** Fix opening `<Dropdown>` ([#2244], [#2251])
+
+[v0.30.5]: https://github.com/react-bootstrap/react-bootstrap/compare/v0.30.4...v0.30.5
+[#2244]: https://github.com/react-bootstrap/react-bootstrap/pull/2244
+[#2251]: https://github.com/react-bootstrap/react-bootstrap/pull/2251
+
+
+## [v0.30.4]
+> 2016-09-30
+
+- **Bugfix:** Properly set `aria-expanded` on `<Panel>` headers ([#2137])
+- **Bugfix:** Fix off-by-one bug in `<Pagination>` [#2189]
+- **Bugfix:** Persist `<Dropdown.Menu>` instance across visibility changes ([#2241])
+
+[v0.30.4]: https://github.com/react-bootstrap/react-bootstrap/compare/v0.30.3...v0.30.4
+[#2137]: https://github.com/react-bootstrap/react-bootstrap/pull/2137
+[#2189]: https://github.com/react-bootstrap/react-bootstrap/pull/2189
+[#2241]: https://github.com/react-bootstrap/react-bootstrap/pull/2241
+
+
 ## [v0.30.3]
 > 2016-08-20
 

@@ -63,6 +63,12 @@ const propTypes = {
   enforceFocus: React.PropTypes.bool,
 
   /**
+   * When `true` The modal will restore focus to previously focused element once
+   * modal is hidden
+   */
+  restoreFocus: React.PropTypes.bool,
+
+  /**
    * When `true` The modal will show itself.
    */
   show: React.PropTypes.bool,
@@ -207,7 +213,7 @@ class Modal extends React.Component {
       children, // Just in case this get added to BaseModal propTypes.
       onEntering,
       onExited,
-      ...props,
+      ...props
     } = this.props;
 
     const [baseModalProps, dialogProps] =

@@ -1,6 +1,6 @@
 import keycode from 'keycode';
 import React from 'react';
-import ReactTestUtils from 'react/lib/ReactTestUtils';
+import ReactTestUtils from 'react-addons-test-utils';
 import ReactDOM from 'react-dom';
 import tsp from 'teaspoon';
 
@@ -125,7 +125,7 @@ describe('<Dropdown.Menu>', () => {
       button.click();
 
       requestClose.should.have.been.calledOnce;
-      requestClose.getCall(0).args.length.should.equal(0);
+      requestClose.getCall(0).args.length.should.equal(2);
     });
 
     describe('Keyboard Navigation', () => {

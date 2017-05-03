@@ -34,6 +34,11 @@ const propTypes = {
   in: React.PropTypes.bool,
 
   /**
+   * Wait until the first "enter" transition to mount the component (add it to the DOM)
+   */
+  mountOnEnter: React.PropTypes.bool,
+
+  /**
    * Unmount the component (remove it from the DOM) when it is collapsed
    */
   unmountOnExit: React.PropTypes.bool,
@@ -106,6 +111,7 @@ const propTypes = {
 const defaultProps = {
   in: false,
   timeout: 300,
+  mountOnEnter: false,
   unmountOnExit: false,
   transitionAppear: false,
 
@@ -144,12 +150,11 @@ class Collapse extends React.Component {
   handleExit(elem) {
     const dimension = this._dimension();
     elem.style[dimension] = this.props.getDimensionValue(dimension, elem) + 'px';
+    triggerBrowserReflow(elem);
   }
 
   handleExiting(elem) {
     const dimension = this._dimension();
-
-    triggerBrowserReflow(elem);
     elem.style[dimension] = '0';
   }
 
@@ -166,7 +171,7 @@ class Collapse extends React.Component {
 
   render() {
     const {
-      onEnter, onEntering, onEntered, onExit, onExiting, className, ...props,
+      onEnter, onEntering, onEntered, onExit, onExiting, className, ...props
     } = this.props;
 
     delete props.dimension;

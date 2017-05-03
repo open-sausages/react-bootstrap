@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
 
-import { bsClass, getClassSet, prefix, splitBsProps }
+import { bsClass, getClassSet, prefix, splitBsPropsAndOmit }
   from './utils/bootstrapUtils';
 import createChainedFunction from './utils/createChainedFunction';
 import ValidComponentChildren from './utils/ValidComponentChildren';
@@ -17,6 +17,7 @@ const propTypes = {
     React.PropTypes.string, React.PropTypes.number,
   ]),
   onSelect: React.PropTypes.func,
+  rootCloseEvent: React.PropTypes.oneOf(['click', 'mousedown']),
 };
 
 const defaultProps = {
@@ -28,7 +29,12 @@ class DropdownMenu extends React.Component {
   constructor(props) {
     super(props);
 
+    this.handleRootClose = this.handleRootClose.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
+  }
+
+  handleRootClose(event) {
+    this.props.onClose(event, { source: 'rootClose' });
   }
 
   handleKeyDown(event) {
@@ -43,7 +49,7 @@ class DropdownMenu extends React.Component {
         break;
       case keycode.codes.esc:
       case keycode.codes.tab:
-        this.props.onClose(event);
+        this.props.onClose(event, { source: 'keydown' });
         break;
       default:
     }
@@ -89,48 +95,46 @@ class DropdownMenu extends React.Component {
     const {
       open,
       pullRight,
-      onClose,
       labelledBy,
       onSelect,
       className,
+      rootCloseEvent,
       children,
-      ...props,
+      ...props
     } = this.props;
 
-    const [bsProps, elementProps] = splitBsProps(props);
+    const [bsProps, elementProps] = splitBsPropsAndOmit(props, ['onClose']);
 
     const classes = {
       ...getClassSet(bsProps),
       [prefix(bsProps, 'right')]: pullRight,
     };
 
-    const list = (
-      <ul
-        {...elementProps}
-        role="menu"
-        className={classNames(className, classes)}
-        aria-labelledby={labelledBy}
+    return (
+      <RootCloseWrapper
+        disabled={!open}
+        onRootClose={this.handleRootClose}
+        event={rootCloseEvent}
       >
-        {ValidComponentChildren.map(children, child => (
-          React.cloneElement(child, {
-            onKeyDown: createChainedFunction(
-              child.props.onKeyDown, this.handleKeyDown
-            ),
-            onSelect: createChainedFunction(child.props.onSelect, onSelect),
-          })
-        ))}
-      </ul>
+        <ul
+          {...elementProps}
+          role="menu"
+          className={classNames(className, classes)}
+          aria-labelledby={labelledBy}
+        >
+          {ValidComponentChildren.map(children, child => (
+            React.cloneElement(child, {
+              onKeyDown: createChainedFunction(
+                child.props.onKeyDown, this.handleKeyDown,
+              ),
+              onSelect: createChainedFunction(
+                child.props.onSelect, onSelect,
+              ),
+            })
+          ))}
+        </ul>
+      </RootCloseWrapper>
     );
-
-    if (open) {
-      return (
-        <RootCloseWrapper noWrap onRootClose={onClose}>
-          {list}
-        </RootCloseWrapper>
-      );
-    }
-
-    return list;
   }
 }
 
