@@ -100,12 +100,12 @@ class Popover extends React.Component {
         <div className="arrow" style={arrowStyle} />
 
         {title && (
-          <h3 className={prefix(bsProps, 'title')}>
+          <h3 className={prefix(bsProps, 'header')}>
             {title}
           </h3>
         )}
 
-        <div className={prefix(bsProps, 'content')}>
+        <div className={prefix(bsProps, 'body')}>
           {children}
         </div>
       </div>
