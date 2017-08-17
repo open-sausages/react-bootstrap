@@ -60,6 +60,7 @@ class ModalHeader extends React.Component {
         {...elementProps}
         className={classNames(className, classes)}
       >
+        {children}
         {closeButton &&
           <button
             type="button"
@@ -73,7 +74,6 @@ class ModalHeader extends React.Component {
           </button>
         }
 
-        {children}
       </div>
     );
   }
